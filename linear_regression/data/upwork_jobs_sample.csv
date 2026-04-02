@@ -1,0 +1,21 @@
+budget,hourly_low,hourly_high,title,description,country,published_date
+650,25,45,Full website redesign,"Need UX/UI redesign for 12-page SaaS marketing site; Figma files provided.",USA,2024-10-12
+420,18,32,Logo and brand kit,"Create logo, color palette, and typography guide for fintech wallet app.",Kenya,2024-09-05
+900,35,60,Mobile app QA,"Regression and exploratory testing for Android/iOS release; write 50+ test cases.",India,2024-11-01
+520,22,38,Data dashboard build,"Build Looker Studio dashboard from GA4 + BigQuery for ecommerce KPIs.",Canada,2024-10-20
+750,30,50,API integration,"Integrate Stripe subscriptions into existing Node/React stack; handle webhooks.",USA,2024-08-18
+310,15,28,Blog content package,"Write 8 SEO articles on remote work tools (1000 words each).",Philippines,2024-09-28
+480,20,35,Social ads creatives,"Design 6 static + 2 motion ads for Meta/TikTok; performance focus.",Brazil,2024-10-30
+1050,40,70,ETL pipeline setup,"Airflow DAG to ingest CSV from S3 to Snowflake; add data quality checks.",UK,2024-07-22
+580,24,40,Email nurture flow,"Set up 5-email onboarding sequence in HubSpot with A/B tests.",USA,2024-08-02
+690,26,44,Shopify speed audit,"Improve Core Web Vitals; lazy-load media; fix blocking scripts.",Australia,2024-10-01
+860,34,55,Security review,"Pentest small Django app; report vulns and remediation steps.",Germany,2024-09-18
+430,19,31,Customer research,"10 user interviews + synthesis for productivity SaaS; provide insights deck.",Canada,2024-11-05
+720,28,46,3D product renders,"Render 6 lifestyle shots for new gadget; deliver layered files.",Poland,2024-08-27
+540,21,37,Analytics tagging,"Implement GA4 + GTM events for React SPA; document data layer.",USA,2024-07-30
+610,23,39,Podcast editing,"Edit 4 episodes (30 min each), remove noise, add intro/outro, level audio.",USA,2024-11-12
+990,38,65,Cloud cost optimization,"Audit AWS bill, recommend rightsizing and savings plans; implement quick wins.",USA,2024-09-09
+360,16,27,Slide deck design,"Design 20-slide sales deck in Google Slides; apply new brand.",Spain,2024-10-11
+820,33,52,Localization review,"Proof and adapt app strings to Spanish + glossary creation.",Mexico,2024-11-03
+450,17,30,Data labeling,"Annotate 2000 images for defect detection; follow provided taxonomy.",India,2024-08-14
+780,29,48,CRM migration,"Migrate 4k contacts from Pipedrive to HubSpot; map fields, test workflows.",USA,2024-07-18

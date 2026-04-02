@@ -1,0 +1,13 @@
+﻿name: upwork_budget_predictor
+version: 0.1.0+1
+description: Simple one-page app to call the Upwork budget prediction API.
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0
+
+flutter:
+  uses-material-design: true

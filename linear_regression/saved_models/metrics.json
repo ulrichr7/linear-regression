@@ -1,0 +1,18 @@
+{
+  "Linear Regression": {
+    "train_rmse": 2.718696587991899e-13,
+    "test_rmse": 363.854434789922
+  },
+  "Decision Tree": {
+    "train_rmse": 129.30503341582133,
+    "test_rmse": 307.73365106858233
+  },
+  "Random Forest": {
+    "train_rmse": 86.04928083742995,
+    "test_rmse": 240.0763441942306
+  },
+  "SGD Regressor": {
+    "train_rmse": 86.38253757435359,
+    "test_rmse": 252.63827602396157
+  }
+}

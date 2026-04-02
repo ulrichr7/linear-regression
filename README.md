@@ -1,60 +1,81 @@
-Prediction App Setup Guide
-This guide will help you set up and run both the backend (FastAPI) and frontend (Flutter) for the Prediction App.
+# Upwork Budget Prediction (Linear Regression Summative)
 
-Prerequisites
-Before you begin, make sure you have the following installed on your machine:
+## Mission (4 lines)
+Freelancers and hiring teams often struggle to estimate a realistic project budget from job text.
+This project predicts expected job budget from title + description features in freelance postings.
+The objective is to reduce pricing guesswork and support faster proposal and screening decisions.
+It is a non-generic, non-housing regression use case tied to freelance marketplace operations.
 
-Python 3.x
-pip (Python package manager)
-Flutter SDK
-Android Studio or any preferred IDE for Flutter development (e.g., Visual Studio Code)
-A running local network for API communication between the app and the backend.
-1. Clone the repository
-Clone the repository to your local machine: git clone https://github.com/ulrichr7/linear-regression.git
-cd linear-regression
+## Dataset
+- Source dataset used in this repo: `linear_regression/data/upwork_jobs_sample.csv`
+- Source type: freelance job postings with budget and hourly signals (prepared for regression training)
+- Main fields: `budget`, `hourly_low`, `hourly_high`, `title`, `description`, `country`, `published_date`
+- Target: continuous budget value (`budget`, with hourly midpoint fallback during preprocessing)
 
-3. Set up a Python virtual environment
-Create a virtual environment to isolate your project dependencies: python -m venv venv
+## Repository Structure
+- Notebook: `linear_regression/multivariate_fixed.ipynb`
+- Saved models and metrics: `linear_regression/saved_models/`
+- API: `api/main.py`
+- API compatibility entrypoint: `api/prediction.py`
+- Flutter app: `FlutterApp/lib/main.dart`
 
-Activate the virtual environment:
-Windows:
-venv\Scripts\activate
+## Task 1 Evidence (Modeling)
+- Regression models implemented in notebook: Linear Regression, Decision Tree, Random Forest, SGD (gradient descent)
+- Feature engineering and preprocessing included: missing handling, text feature generation, numeric conversion, scaling/standardization
+- Visualizations included (saved in `linear_regression/`):
+  - `correlation_heatmap.png`
+  - `features_distribution.png`
+  - `loss_curves.png` and `sgd_loss_curve.png`
+  - `before_after_regression.png` and `regression_line_plot.png`
+- Best model persisted to `linear_regression/saved_models/`
+- One-point prediction script: `linear_regression/predict_job_budget.py`
 
-Mac/Linux:
-source venv/bin/activate
+## Task 2 Evidence (FastAPI)
+- Prediction endpoint: `POST /predict`
+- Retraining endpoint: `POST /retrain` (triggers model refresh when new dataset path/rows are provided)
+- Health endpoint: `GET /health`
+- Swagger UI: `/docs`
+- CORS middleware configured in `api/main.py` with explicit origins and methods
+- Pydantic validation included for payload data types and range/length constraints
 
-3. Install backend dependencies
-Install the required dependencies for the FastAPI backend: pip install -r requirements.txt
+## Public Deployed API (Render)
+- Swagger URL: `https://<your-render-service>.onrender.com/docs`
+- Prediction URL: `https://<your-render-service>.onrender.com/predict`
 
-4. Set up the Model Path
-Ensure the model file model.pkl is available at the correct path. Update the model_path variable in the api.py file if needed: model_path = "C:/Users/kabat/Downloads/model.pkl" # Path to your model
+Replace `<your-render-service>` with your actual deployed service name before submission.
 
-5. Run the FastAPI server
-Start the FastAPI server by running the following command: uvicorn api:app --reload --host 192.168.1.82 --port 8000 Note: Make sure 192.168.1.82 is the correct IP address of the machine running the API (this should be accessible from your Flutter app).
+## Task 3 Evidence (Flutter)
+- Single-page mobile UI implemented in `FlutterApp/lib/main.dart`
+- Required elements present:
+  - Input text fields (title, description)
+  - `Predict` button
+  - Result/error display area
+- API base URL set with build-time define:
+  - `flutter run --dart-define=API_BASE=https://<your-render-service>.onrender.com`
 
-You should now have the API server running at http://192.168.1.82:8000.
+## Task 4 Video Demo
+- Demo link: https://vimeo.com/1172658333/f1f7bee422
+- In demo, ensure you show:
+  - Mobile app making predictions
+  - Swagger tests for datatype/range validation
+  - Notebook model comparison and loss explanation
+  - Retraining flow (`/retrain`) for new data updates
 
-6. Test the API connection (optional)
-You can test the API by navigating to http://192.168.1.82:8000/docs in your browser. This should display the FastAPI Swagger UI where you can test the /predict endpoint.
+## Local Run Instructions
+1. Create and activate a Python virtual environment.
+2. Install API dependencies:
+   - `pip install -r api/requirements.txt`
+3. Run API:
+   - `uvicorn api.main:app --reload --host 127.0.0.1 --port 8000`
+4. Open Swagger:
+   - `http://127.0.0.1:8000/docs`
+5. Run Flutter app:
+   - `cd FlutterApp`
+   - `flutter pub get`
+   - `flutter run --dart-define=API_BASE=http://127.0.0.1:8000`
 
-7. Install Flutter
-Follow the official installation guide for Flutter: Flutter Installation.
-
-8. Clone the repository
-If you haven't already,
-clone the repository for the Flutter frontend: git clone https://github.com/ulrichr7/linear-regression.git
-cd Linear-Regression-Model-Deployment-Using-Flutter
-
-10. Install Flutter dependencies
-Install the required dependencies for the Flutter app: flutter pub get
-
-11. Update the API URL in main.dart
-Make sure the API URL in the main.dart file points to the correct address of your FastAPI backend: final url = 'http://192.168.1.82:8000/predict'; // Replace with your backend address
-
-12. Run the Flutter app
-Run the Flutter app on an emulator or connected device: flutter run
-
-Video Demo
-https://vimeo.com/1172658333/f1f7bee422
-
-Deployed API
+## Submission Checklist
+- GitHub repo contains notebook, API, Flutter app
+- README includes mission, dataset/source, API URL/docs, video link, and app run steps
+- Public API URL is routable (not localhost)
+- Swagger endpoint is reachable and testable by graders
